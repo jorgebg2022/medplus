@@ -7,14 +7,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" \
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" \
     crossorigin="anonymous">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/patients_register.css">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/patients_register.css'); ?>">
 
 <?php 
-    echo '<div class="patient-register-form-container" data-id="'.$doctor['photo'].'">
+    $base = base_url();
+    echo '<div class="patient-register-form-container" data-id="'.$doctor['id'].'">
             <form class="patient-register-form" action="patients-register-action" \
                 method="POST" enctype="multipart/form-data">
                 <div class="text-center">
-                    <img src="<?php echo base_url('.'assets/images/generic.png'.');?>" \
+                    <img src="'.$base.'/assets/images/generic.png" \
                         class="rounded photo" alt="..." onclick="uploadPhoto();">
                     <input type="file" name="photo" onchange="previewPhoto();">
                 </div>
@@ -38,5 +39,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>'
 ?>
 
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/cpf_mask.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/photo_handle.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/cpf_mask.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/photo_handle.js');?>"></script>
