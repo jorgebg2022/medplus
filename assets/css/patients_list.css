@@ -1,0 +1,142 @@
+
+body {
+    background-color: whitesmoke;
+}
+
+.patients-list-container {
+    width: auto;
+    height: auto;
+    background: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center  
+}
+.lgi {
+    height: 60px;
+}
+li{
+    list-style-type: none;
+}
+
+.patients-list {
+    position: relative;
+    top: 50px;
+    width: 70vw;
+    background-color: white;
+    border: 30px solid white;
+    border-radius: 5px;
+
+}
+
+.linne {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 5px;
+    top: 0px;
+}
+
+.patient-item {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    left: -15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+
+}
+
+.light-shadow {
+    -webkit-box-shadow: 3px 3px 5px rgba(131, 130, 130, 0.77);
+    -moz-box-shadow:    3px 3px 5px rgba(151, 151, 151, 0.77);
+    box-shadow:         3px 3px 5px rgba(116, 114, 114, 0.77);
+}
+
+.phoyo-div {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.photo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 60px;
+    width: 60px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: whitesmoke;
+    padding-right: 5px;
+    border-right: 1px solid gray;
+}
+
+.icon {
+    position: relative;
+    font-size: 20px;
+    color: black;
+    border-radius: 2px;
+    top: 0px;
+    right: 10px;
+    margin-left: 10px;
+    border: 10px solid;
+
+}
+
+
+.icon:hover {
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.edit {
+    background-color: #1E90FF;
+    border-color: #1E90FF;  
+}
+
+.delete {
+    background-color: #B22222; 
+    border-color: #B22222;
+}
+
+.infs {
+    display: inline-block;
+    width: 50vw;
+}
+
+.infs:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+.info {
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.info > label {
+    color: #1E90FF;
+}
+
+
+.opts {
+    float:right;
+}
+
+.title {
+    background-color: #1E90FF;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.see-photo {
+    background-color: #8f3d8f;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.see-photo:hover {
+    cursor: pointer;
+}

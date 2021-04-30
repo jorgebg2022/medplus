@@ -1,0 +1,43 @@
+
+body {
+    background-color: whitesmoke;
+}
+
+.patient-register-form-container {
+    width: auto;
+    height: auto;
+    background: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+.patient-register-form {
+    position: relative;
+    top: 50px;
+    background-color: white;
+    border: 30px solid white;
+    border-radius: 5px;
+    -webkit-box-shadow: 3px 3px 5px rgba(131, 130, 130, 0.77);
+    -moz-box-shadow:    3px 3px 5px rgba(151, 151, 151, 0.77);
+    box-shadow:         3px 3px 5px rgba(116, 114, 114, 0.77);
+}
+.photo {
+    height: auto;
+    width: 200px;
+    margin: 20px;
+    padding: 5px;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+}
+
+.photo:hover {
+    cursor: pointer;
+    height: auto;
+    width: 210px;
+}
+
+input[type="file"] {
+    display: none;
+}
