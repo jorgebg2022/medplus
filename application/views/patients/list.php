@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     {
                         echo '<li class="list-group-item form-row item" data-id="'.$patient->id.'">
                                 <div class="form-row infs" data-toggle="modal" data-target="#patient-info" \
-                                    type="button" onclick="javascript: requestPatientData(this);">
+                                    type="button" data-backdrop="static" keyboard="false" onclick="javascript: requestPatientData(this);">
                                     <div class="info">
                                         <label for="name-info">Nome:</label>
                                         <span id="name-info">'.$patient->name.'</span>
@@ -45,9 +45,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="modal-header">
                         <h6 class="modal-title">Paciente</h6>
                     </div>
-                    <div class="modal-body"></div>
+                    <div class="modal-body" id="data-modal-body"></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" \
+                            onclick="javascript: closeOption(this, '#data-modal-body');">Close</button>
                     </div>
                 </div>
             </div>
@@ -60,8 +61,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="modal-header">
                         <h6 class="modal-title">Foto</h6>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="photo-modal-body">
                         ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" \
+                            onclick="javascript: closeOption(this, '#photo-modal-body');">Close</button>
                     </div>
                 </div>
             </div>
@@ -88,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     patientDataItem.innerHTML = `
                         <li class="list-group-item see-photo" data-has="${response.photo}"\
                             data-toggle="modal" data-target="#patient-photo"\
-                            onclick="javascript: showPhoto(this);">Ver foto</li>
+                            onclick="javascript: requestPatientPhoto(this);">Ver foto</li>
                         <li class="list-group-item title">Pessoais</li>
                         <li class="list-group-item">Nome: ${response.name}</li>
                         <li class="list-group-item">Nascimento: ${response.birthday}</li>
@@ -110,16 +115,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     if(seePhotoOption.dataset.has === 'false'){
                         let data = window.document.querySelector('.ppt');
                         data.removeChild(seePhotoOption);
-                    }
-                    let closeBtn = window.document.querySelector('.btn-danger');
-                    closeBtn.addEventListener('click', (event)=>{
-                        event.preventDefault();
-                        let modalBodyRemovel = window.document.querySelector('.modal-body');
-                        let data = window.document.querySelector('.ppt');
-                        modalBodyRemovel.removeChild(data);
-                    })
-                    
+                    }       
                 }, 'json');
+            }
+
+            function closeOption(element, selector)
+            {
+                let modalBodyRemovel = window.document.querySelector(selector);
+                let dataView = window.document.querySelector('.ppt');
+                if(dataView){
+                    modalBodyRemovel.removeChild(dataView);
+                }
             }
 
             function editOption(element)
@@ -144,10 +150,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 })
             }
 
-            function showPhoto(element)
+            function requestPatientPhoto(element)
             {
+                let uri = "<?php echo base_url('patient-photo');?>";
                 let id = element.parentElement.dataset.id;
-                console.log(id)
+                console.log(id);
+                $.post(uri, {id: id}, function(response) {
+                    console.log(response);
+                }, 'json');
                 let closeBtnInfo = window.document.querySelector('.btn-danger');
                 closeBtnInfo.click();
             }

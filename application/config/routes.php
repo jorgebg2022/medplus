@@ -66,3 +66,4 @@ $route['patients'] = 'patient/get_patients_view';
 $route['patients-register-view'] = 'patient/register_patient_form';
 $route['patients-register-action'] = 'patient/register_patient_action';
 $route['profile'] = 'doctor/get_profile';
+$route['patient-photo'] = 'patient/get_photo';

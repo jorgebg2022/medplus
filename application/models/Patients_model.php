@@ -73,4 +73,12 @@ class Patients_model extends CI_Model
             return array('status'=>'fail');
         }
     }
+
+    public function get_photo_by_id(int $id): array
+    {
+        $this->db->select('id, photo');
+        $this->db->where('id', $id);      
+        $patient_photo = $this->db->get('patients')->row_array();
+        return $patient_photo;
+    }
 }

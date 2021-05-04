@@ -31,12 +31,12 @@ class Doctor extends CI_Controller {
             if(password_verify($password, $doctor['password']))
             {
                 $this->session->set_userdata('user_id', $doctor['id']);
-                redirect('main', 'location');
+                redirect('/main', 'location');
             }else{
-                echo 'senha errada';
+                redirect('/', 'location');
             }
         }else{
-            echo 'nenhum doutor com esse cpf';
+            redirect('/', 'location');
         }
     }
 

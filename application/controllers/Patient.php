@@ -69,4 +69,12 @@ class Patient extends CI_Controller{
         $response = $this->patients_model->delete_by_id($id);
         echo json_encode($response);     
     }
+
+    public function get_photo()
+    {
+        logged_required();
+        $id = $this->input->post('id');
+        $response = $this->patients_model->get_photo_by_id($id);
+        echo json_encode($response);  
+    }
 }
