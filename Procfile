@@ -1,2 +1,2 @@
 
-web:vendor/bin/phpunit.bat
+web: vendor/bin/heroku-php-apache2
