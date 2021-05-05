@@ -40,22 +40,13 @@ class Patients_model extends CI_Model
     public function get_by_id(int $id): array
     {
         $this->db->where('id', $id);
-
         $patient = $this->db->get('patients')->row_array();
-
-        if($patient['photo'] == null)
-        {
-            $patient['photo'] = false;
-        } 
-        else 
-        {
-            $patient['photo'] = true;
-        }
         return $patient;
     }
 
-    public function update(string $data): void
+    public function update(array $data): void
     {
+        $this->db->where('cpf', $data['cpf']);
         $this->db->update('patients', $data);
     }
 
@@ -74,11 +65,4 @@ class Patients_model extends CI_Model
         }
     }
 
-    public function get_photo_by_id(int $id): array
-    {
-        $this->db->select('id, photo');
-        $this->db->where('id', $id);      
-        $patient_photo = $this->db->get('patients')->row_array();
-        return $patient_photo;
-    }
 }

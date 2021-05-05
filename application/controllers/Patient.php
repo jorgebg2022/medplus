@@ -33,8 +33,20 @@ class Patient extends CI_Controller{
             $new_patient['birthday'] = $this->input->post('birthday');
             $new_patient['cpf'] = $this->input->post('cpf');
             $new_patient['cep'] = $this->input->post('cep');
-            if($_FILES['photo']['tmp_name']){
-                $new_patient['photo'] = file_get_contents($_FILES['photo']['tmp_name']);
+            if($_FILES['photo']){
+                $uploadDir = 'uploads/';
+                $fileName = basename($_FILES["photo"]["name"]);
+                $targetFilePath = $uploadDir.$fileName;
+                $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+                $allowTypes = array('jpg','png','jpeg');
+                if(in_array($fileType, $allowTypes))
+                {      
+                    if(! file_exists($targetFilePath))
+                    {
+                        move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFilePath);
+                    }
+                    $doctor['photo'] = $fileName;
+                }
             }else{
                 $new_patient['photo'] = null;
             }
@@ -70,11 +82,48 @@ class Patient extends CI_Controller{
         echo json_encode($response);     
     }
 
-    public function get_photo()
+    public function edit_patient()
+    {    
+        $id = $this->uri->segment(2);
+        $result['patient'] = $this->patients_model->get_by_id($id);
+        basefy('patients/update', $result);
+    }
+
+    public function update_patient_action()
     {
         logged_required();
-        $id = $this->input->post('id');
-        $response = $this->patients_model->get_photo_by_id($id);
-        echo json_encode($response);  
+        $new_patient['name'] = $this->input->post('name');
+        $new_patient['birthday'] = $this->input->post('birthday');
+        $new_patient['cpf'] = $this->input->post('cpf');
+        $new_patient['cep'] = $this->input->post('cep');
+        if($_FILES['photo']){
+            $uploadDir = 'uploads/';
+            $fileName = basename($_FILES["photo"]["name"]);
+            $targetFilePath = $uploadDir.$fileName;
+            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+            $allowTypes = array('jpg','png','jpeg');
+            if(in_array($fileType, $allowTypes))
+            {      
+                if(! file_exists($targetFilePath))
+                {
+                    move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFilePath);
+                }
+                $doctor['photo'] = $fileName;
+            }
+        }else{
+            $new_patient['photo'] = null;
+        }  
+        $new_patient['phone_number'] = $this->input->post('phone_number');
+        $new_patient['mother_name'] = $this->input->post('mother_name');
+        $new_patient['father_name'] = $this->input->post('father_name');
+        $new_patient['neighborhood'] = $this->input->post('neighborhood');
+        $new_patient['street'] = $this->input->post('street');
+        $new_patient['city'] = $this->input->post('city');
+        $new_patient['house_number'] = $this->input->post('house_number');
+        $new_patient['state'] = $this->input->post('state');
+        $new_patient['gender'] = $this->input->post('gender');
+        $this->patients_model->update($new_patient);
+        redirect('patients', 'refresh');
     }
+
 }

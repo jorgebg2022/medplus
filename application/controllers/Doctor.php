@@ -47,11 +47,11 @@ class Doctor extends CI_Controller {
         redirect('/', 'location');
     }
 
-    public function get_profile()
+    public function update_profile()
     {
         $logged_id = logged_required();
         $doctor['doctor'] = $this->doctors_model->get_by_field('id', $logged_id);
-        basefy('doctors/profile', $doctor);
+        basefy('doctors/update', $doctor);
     }
 
     public function auth_register()
@@ -76,6 +76,39 @@ class Doctor extends CI_Controller {
         } else {
             redirect('/register', 'location');
         }
+    }
+
+    public function update_doctor_action()
+    {
+        logged_required();
+        $doctor['name'] = $this->input->post('name');
+        $doctor['cpf'] = $this->input->post('cpf');
+        if($_FILES['photo']){
+            $uploadDir = 'uploads/';
+            $fileName = basename($_FILES["photo"]["name"]);
+            $targetFilePath = $uploadDir.$fileName;
+            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+            $allowTypes = array('jpg','png','jpeg');
+            if(in_array($fileType, $allowTypes))
+            {      
+                if(! file_exists($targetFilePath))
+                {
+                    move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFilePath);
+                }
+                $doctor['photo'] = $fileName;
+            }
+        }else{
+            $doctor['photo'] = null;
+        } 
+        $this->doctors_model->update($doctor);
+        redirect('main', 'refresh');
+    }
+
+    public function delete_doctor()
+    {
+        $logged_id = logged_required();
+        $this->doctors_model->delete($logged_id);
+        redirect('/', 'refresh');
     }
 
 }

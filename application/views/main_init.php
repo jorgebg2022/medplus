@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" \
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">Doutor</a>
                         <ul class="dropdown-menu dropdown-menu-dark patients-options" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" href="<?php echo base_url('/profile');?>">Perfil</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('/edit-doctor');?>">Perfil</a></li>
                             <li><a class="dropdown-item" href="<?php echo base_url('/auth-logout');?>">Sair</a></li>
                         </ul>
                     </li>

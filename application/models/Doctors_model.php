@@ -15,45 +15,34 @@ class Doctors_model extends CI_Model
         $this->db->insert('doctors', $data);
     }
 
-    public function get_by_cpf(string $cpf): array | bool
+    public function get_by_cpf(string $cpf): array | null
     {
         $this->db->where('cpf', $cpf);
-
         $doctor = $this->db->get('doctors')->row_array();
-
-        if($doctor)
-        {
-            return $doctor;
-
-        } else 
-        {
-            return false;
-        }
+        return $doctor;
     }
 
-    public function get_by_field(string $field, string $value): array | bool 
+    public function get_by_field(string $field, string $value): array 
     {
         $this->db->where($field, $value);
         if($field !== 'name'){
             $doctor = $this->db->get('doctors')->row_array();
-            if($doctor['photo'])
-            {
-                $doctor['photo'] = true;
-            } else {
-                $doctor['photo'] = false;
-            }
         } else {
             $doctor = $this->db->get('doctors')->result();
         }    
-        if($doctor){
-            return $doctor;
-        } else {
-            return false;
-        }
+        unset($doctor['password']);
+        return $doctor;
     }
 
-    public function update(string $data): string
+    public function update(array $data): void
     {
-        return 'save user method';
+        $this->db->where('cpf', $data['cpf']);
+        $this->db->update('doctors', $data);
+    }
+
+    public function delete(int $id): void
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('doctors');     
     }
 }

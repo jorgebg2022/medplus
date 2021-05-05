@@ -11,6 +11,6 @@ class Page extends CI_Controller{
     public function index()
     {
         logged_required();
-        basefy();
+        basefy('main/main_middle');
     }
 }
