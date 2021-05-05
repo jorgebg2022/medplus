@@ -1,6 +1,6 @@
 
 
-/user_guide
-/vendor
-/composer.lock
-/composer.json
+./user_guide
+./vendor
+./composer.lock
+./composer.json
