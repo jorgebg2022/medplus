@@ -1,1 +1,1 @@
-<?php echo "Sample text."; ?>
+<?php echo error_log($php_errormsg); ?>
