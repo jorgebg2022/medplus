@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 // $config['base_url'] = 'http://127.0.0.1:80/medplusplus/';
 
-$config['base_url'] = 'https://medplus-app.herokuapp.com/medplus-app';
+$config['base_url'] = 'https://medplus-app.herokuapp.com/';
 
 /*
 |--------------------------------------------------------------------------
