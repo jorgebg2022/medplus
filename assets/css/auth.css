@@ -164,6 +164,14 @@ input[type=password]:placeholder {
     color: #cccccc;
 }
 
+input[value="Logar"]:hover {
+    cursor: pointer;
+}
+
+input[value="Registrar"]:hover {
+    cursor: pointer;
+}
+
 .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;

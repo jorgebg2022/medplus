@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						name="cpf" placeholder="Digite seu CPF" maxlength="14" minlength="14" \
 						onkeydown="javascript: fMasc(this, mCPF);" required>
 					<input type="password" id="password" class="fadeIn third" name="password" placeholder="Digite sua senha" required>
-                    <input type="password" id="password" class="fadeIn third" name="re-password" placeholder="Repite sua senha" required>
+                    <input type="password" id="password" class="fadeIn third" name="re-password" placeholder="Repita sua senha" required>
 					<input type="submit" class="fadeIn fourth" value="Registrar">
 				</form>
 				<div id="formFooter">
