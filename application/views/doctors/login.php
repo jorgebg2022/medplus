@@ -12,19 +12,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/auth.css');?>">
 	</head>
 	<body>
-		
-
-
 		<div class="wrapper fadeInDown">
 			<div id="formContent">
 				<div class="fadeIn first">
-					<img src="<?php echo base_url('assets/images/medplus-logo.png');?>" id="icon" alt="User Icon" class="icon-logo"/>
+					<img src="<?php echo base_url('assets/images/medplus-logo.png');?>" \
+						id="icon" alt="User Icon" class="icon-logo"/>
 				</div>
 				<form action="auth-login" method="POST" enctype="multipart/form-data">
 					<input type="text" id="login" class="fadeIn second" \
 						name="cpf" placeholder="EX: 000.000.000-00" maxlength="14" minlength="14" \
 						onkeydown="javascript: fMasc(this, mCPF);" required>
-					<input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required>
+					<input type="password" id="password" class="fadeIn third" name="password" \
+						placeholder="password" required>
 					<input type="submit" class="fadeIn fourth" value="Logar">
 				</form>
 				<div id="formFooter">
@@ -32,8 +31,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 		</div>
-
-		<script src="<?php echo base_url('assets/js/cpf_mask.js');?>"></script>
-
+		<script src="<?php echo base_url('assets/js/form.js');?>"></script>
 	</body>
 </html>

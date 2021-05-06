@@ -1,6 +1,6 @@
  
-
-function previewPhoto(){
+function previewPhoto()
+{
     let photoPreview = window.document.querySelector('.photo');
     let photoUploadInput = window.document.querySelector("input[type='file']");
     let photoUpload = photoUploadInput.files[0];
@@ -15,7 +15,8 @@ function previewPhoto(){
     } 
 }
 
-function uploadPhoto(){
+function uploadPhoto()
+{
     window.document.querySelector("input[type='file']").click();
 }
 

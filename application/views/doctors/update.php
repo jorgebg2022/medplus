@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" \
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" \
     crossorigin="anonymous">
-<link rel="stylesheet" href="<?php echo base_url('assets/css/patients_register.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/form.css'); ?>">
 
 <?php 
     $photo = base_url('assets/images/generic.png');
@@ -53,8 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div> 
                 </div>
             </form>
-        </div>'
+        </div>';
 ?>
 
-<script type="text/javascript" src="<?php echo base_url('assets/js/cpf_mask.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/photo_handle.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/form.js');?>"></script>
