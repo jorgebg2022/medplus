@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://0.0.0.0:80/medplus';
+$config['base_url'] = 'https://medplusnewapp.herokuapp.com/';
 
 // $config['base_url'] = 'https://medplus-app.herokuapp.com/';
 
