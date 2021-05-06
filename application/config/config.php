@@ -37,7 +37,7 @@ $config['base_url'] = 'https://medplusnewapp.herokuapp.com/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = APPPATH.'../../../index.php';
 
 /*
 |--------------------------------------------------------------------------
