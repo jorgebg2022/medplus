@@ -13,12 +13,52 @@ class Doctor extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('doctors/login');     
+        if($this->session->flashdata('success'))
+        {
+            $s_msg = $this->session->flashdata('success');
+            $this->session->set_flashdata('success', false);
+        } else {
+            $s_msg = false;
+        }
+
+        if($this->session->flashdata('failure'))
+        {
+            $f_msg = $this->session->flashdata('failure');
+            $this->session->set_flashdata('failure', false);
+        } else {
+            $f_msg = false;
+        }
+
+        $data = array(
+            'success_message' => $s_msg,
+            'failure_message' => $f_msg
+        );
+        $this->load->view('doctors/login', $data);     
     }
 
     public function register($info=null)
     {
-        $this->load->view('doctors/register');        
+        if($this->session->flashdata('success'))
+        {
+            $s_msg = $this->session->flashdata('success');
+            $this->session->set_flashdata('success', false);
+        } else {
+            $s_msg = false;
+        }
+
+        if($this->session->flashdata('failure'))
+        {
+            $f_msg = $this->session->flashdata('failure');
+            $this->session->set_flashdata('failure', false);
+        } else {
+            $f_msg = false;
+        }
+
+        $data = array(
+            'success_message' => $s_msg,
+            'failure_message' => $f_msg
+        );
+        $this->load->view('doctors/register', $data);        
     }
 
     public function auth_login()
@@ -33,9 +73,11 @@ class Doctor extends CI_Controller {
                 $this->session->set_userdata('user_id', $doctor['id']);
                 redirect('/main', 'location');
             }else{
+                $this->session->set_flashdata('failure', 'Senha incorreta');
                 redirect('/', 'location');
             }
         }else{
+            $this->session->set_flashdata('failure', 'Não há usuário registrado com esse CPF');
             redirect('/', 'location');
         }
     }
@@ -64,6 +106,7 @@ class Doctor extends CI_Controller {
         {
             if($this->doctors_model->get_by_cpf($cpf))
             {
+                $this->session->set_flashdata('failure', 'Já existe um usuário registrado com esse CPF');
                 redirect('/register', 'location');
                 
             } else {
@@ -71,9 +114,11 @@ class Doctor extends CI_Controller {
                 $doctor['cpf'] = $cpf;
                 $doctor['password'] = password_hash($password, PASSWORD_DEFAULT);
                 $this->doctors_model->store($doctor);
+                $this->session->set_flashdata('success', 'Novo usuário com CPF: '.$doctor['cpf'].' registrado');
                 redirect('/', 'location');
             }
         } else {
+            $this->session->set_flashdata('failure', 'Senhas incompátiveis');
             redirect('/register', 'location');
         }
     }

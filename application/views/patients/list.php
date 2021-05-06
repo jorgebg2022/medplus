@@ -5,6 +5,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/list.css">
 
+<?php
+    if($success_message){
+        echo '<div class="alert alert-success" role="alert">
+                '.$success_message.'
+                </div>';
+        unset($success_message);
+    }
+
+    if($failure_message){
+        echo '<div class="alert alert-danger" role="alert">
+                '.$failure_message.'
+                </div>';
+        unset($failure_message);		
+    }
+?>
+
 <div class="patients-list-container">
     <ul class="list-group list-group-flush patients-list">
         <?php 

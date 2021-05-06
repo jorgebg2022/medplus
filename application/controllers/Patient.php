@@ -15,6 +15,25 @@ class Patient extends CI_Controller{
     {
         logged_required();
         $patients['patients_list'] = $this->patients_model->get_all_patients();
+
+        if($this->session->flashdata('success'))
+        {
+            $s_msg = $this->session->flashdata('success');
+            $this->session->set_flashdata('success', false);
+        } else {
+            $s_msg = false;
+        }
+
+        if($this->session->flashdata('failure'))
+        {
+            $f_msg = $this->session->flashdata('failure');
+            $this->session->set_flashdata('failure', false);
+        } else {
+            $f_msg = false;
+        }
+
+        $patients['success_message'] = $s_msg;
+        $patients['failure_message'] = $f_msg;
         basefy('patients/list', $patients);
     }
 
@@ -45,7 +64,7 @@ class Patient extends CI_Controller{
                     {
                         move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFilePath);
                     }
-                    $doctor['photo'] = $fileName;
+                    $new_patient['photo'] = $fileName;
                 }
             }else{
                 $new_patient['photo'] = null;
@@ -59,10 +78,12 @@ class Patient extends CI_Controller{
             $new_patient['house_number'] = $this->input->post('house_number');
             $new_patient['state'] = $this->input->post('state');
             $new_patient['gender'] = $this->input->post('gender');
-            $this->patients_model->store($new_patient);    
+            $this->patients_model->store($new_patient); 
+            $this->session->set_flashdata('failure', 'Novo paciente com CPF: '.$new_patient['cpf'].' registrado');   
             redirect('patients', 'refresh');  
         } else {
-            redirect($_SERVER['HTTP_REFERER']);
+            $this->session->set_flashdata('failure', 'Já existe um paciente registrado com esse CPF');
+            redirect('patients', 'refresh');
         }    
     }
 
@@ -92,10 +113,10 @@ class Patient extends CI_Controller{
     public function update_patient_action()
     {
         logged_required();
-        $new_patient['name'] = $this->input->post('name');
-        $new_patient['birthday'] = $this->input->post('birthday');
-        $new_patient['cpf'] = $this->input->post('cpf');
-        $new_patient['cep'] = $this->input->post('cep');
+        $patient['name'] = $this->input->post('name');
+        $patient['birthday'] = $this->input->post('birthday');
+        $patient['cpf'] = $this->input->post('cpf');
+        $patient['cep'] = $this->input->post('cep');
         if($_FILES['photo']){
             $uploadDir = 'uploads/';
             $fileName = basename($_FILES["photo"]["name"]);
@@ -108,21 +129,21 @@ class Patient extends CI_Controller{
                 {
                     move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFilePath);
                 }
-                $doctor['photo'] = $fileName;
+                $patient['photo'] = $fileName;
             }
         }else{
-            $new_patient['photo'] = null;
+            $patient['photo'] = null;
         }  
-        $new_patient['phone_number'] = $this->input->post('phone_number');
-        $new_patient['mother_name'] = $this->input->post('mother_name');
-        $new_patient['father_name'] = $this->input->post('father_name');
-        $new_patient['neighborhood'] = $this->input->post('neighborhood');
-        $new_patient['street'] = $this->input->post('street');
-        $new_patient['city'] = $this->input->post('city');
-        $new_patient['house_number'] = $this->input->post('house_number');
-        $new_patient['state'] = $this->input->post('state');
-        $new_patient['gender'] = $this->input->post('gender');
-        $this->patients_model->update($new_patient);
+        $patient['phone_number'] = $this->input->post('phone_number');
+        $patient['mother_name'] = $this->input->post('mother_name');
+        $patient['father_name'] = $this->input->post('father_name');
+        $patient['neighborhood'] = $this->input->post('neighborhood');
+        $patient['street'] = $this->input->post('street');
+        $patient['city'] = $this->input->post('city');
+        $patient['house_number'] = $this->input->post('house_number');
+        $patient['state'] = $this->input->post('state');
+        $patient['gender'] = $this->input->post('gender');
+        $this->patients_model->update($patient);
         redirect('patients', 'refresh');
     }
 

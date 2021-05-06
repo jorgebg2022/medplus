@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $photo = base_url('uploads/'.$patient['photo']);
     }
     echo '<div class="patient-register-form-container">
-            <form class="patient-register-form" action="'.base_url('patients-update-action').'" \
+            <form class="patient-register-form" action="'.base_url('/patients-update-action').'" \
             method="POST" enctype="multipart/form-data">
                 <div class="text-center">
                     <img src="'.$photo.'" class="rounded photo" alt="..." onclick="uploadPhoto();">

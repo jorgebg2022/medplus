@@ -12,6 +12,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/auth.css');?>">
 	</head>
 	<body>
+
+
+		<?php
+			if($success_message){
+				echo '<div class="alert alert-success" role="alert">
+						'.$success_message.'
+					</div>';
+				$success_message = false;
+			}
+
+			if($failure_message){
+				echo '<div class="alert alert-danger" role="alert">
+						'.$failure_message.'
+					</div>';
+				$failure_message = false;		
+			}
+		?>
 		<div class="wrapper fadeInDown">
 			<div id="formContent">
 				<div class="fadeIn first">
