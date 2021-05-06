@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" \
     crossorigin="anonymous">
 
-<link rel="stylesheet" href="<?php echo base_url('assets/css/form.css');?>">
+<link rel="stylesheet" href="<?php echo base_url('/assets/css/form.css');?>">
 <?php
     if($success_message){
         echo '<div class="alert alert-success" role="alert">
@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 ?>
 <div class="patient-register-form-container">
-    <form class="<?php echo base_url('/patient-register-form');?>" action="patients-register-action" \
+    <form class="patient-register-form" action="<?php echo base_url('/patients-register-action');?>" \
         method="POST" enctype="multipart/form-data">
         <div class="text-center">
             <img src="<?php echo base_url();?>assets/images/generic.png" \
